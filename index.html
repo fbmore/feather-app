@@ -16,31 +16,58 @@
   nav { display:flex; justify-content:space-between; align-items:center; font-size:14px; }
   nav .brand { font-weight:500; letter-spacing:2px; text-transform:uppercase; font-style:italic; color:var(--ink); }
   nav .links a { margin-left:18px; color:var(--muted); }
-  .hero { text-align:center; padding: 56px 0 24px; }
-  .kicker { font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); font-style:italic; }
+  .hero { text-align:center; padding: 48px 0 4px; }
+  .kicker { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); font-style:italic; }
   h1 { font-size:48px; font-weight:300; font-style:italic; margin:10px 0 14px; line-height:1.1; }
   .lead { font-size:19px; color:#2c2a25; max-width:540px; margin:0 auto; font-style:italic; }
 
-  /* Onboarding carousel */
-  .carousel { margin: 40px 0 8px; }
-  .track {
-    display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory;
-    padding:8px 4px 20px; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  /* Single-card onboarding pager, mirroring the in-app walkthrough */
+  .pager { margin: 36px auto 8px; max-width: 460px; }
+  .stage {
+    position:relative; background:var(--surface); border:0.5px solid rgba(30,30,27,.08);
+    border-radius:28px; padding:44px 32px 40px; min-height:430px; overflow:hidden;
+    box-shadow: 0 18px 40px rgba(30,30,27,.05);
   }
-  .track::-webkit-scrollbar { display:none; }
   .slide {
-    scroll-snap-align:center; flex:0 0 86%; max-width:420px; margin:0 auto;
-    background:var(--surface); border:0.5px solid rgba(30,30,27,.08); border-radius:26px;
-    padding:40px 32px; text-align:center;
+    position:absolute; inset:44px 32px 40px; text-align:center;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition: opacity .35s ease-in-out;
   }
-  @media (min-width:620px){ .slide{ flex-basis:60%; } }
-  .slide .num { font-size:10px; letter-spacing:3px; text-transform:uppercase; font-style:italic; color:var(--muted); }
-  .slide h3 { font-size:30px; font-weight:300; font-style:italic; margin:10px 0 0; line-height:1.15; }
-  .slide .rule { width:56px; height:0.6px; background:rgba(30,30,27,.35); margin:16px auto; }
-  .slide p { font-size:15px; font-style:italic; color:var(--muted); margin:0; }
-  .hint { text-align:center; font-size:12px; color:var(--muted); font-style:italic; margin:4px 0 0; }
+  .slide.active { opacity:1; pointer-events:auto; }
 
-  .features { display:grid; grid-template-columns:1fr; gap:18px; margin:48px 0; }
+  .art { position:relative; width:200px; height:200px; display:flex; align-items:center; justify-content:center; margin-bottom:8px; }
+  .art .halo {
+    position:absolute; width:180px; height:180px; border-radius:50%;
+    background:var(--accent); opacity:.18; filter:blur(18px);
+  }
+  .art img { width:130px; height:130px; object-fit:contain; position:relative; }
+  .art svg { width:92px; height:92px; position:relative; }
+  .art .pulse { animation: pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{ opacity:.85; transform:scale(1);} 50%{ opacity:.55; transform:scale(.94);} }
+
+  /* staggered fade-in of text, re-triggered per slide via the .anim class */
+  .num, .title, .rule, .body { opacity:0; }
+  .active .num   { animation: fadeIn .5s ease-in forwards; }
+  .active .title { animation: fadeIn .5s ease-in .15s forwards; }
+  .active .rule  { animation: fadeIn .5s ease-in .30s forwards; }
+  .active .body  { animation: fadeIn .5s ease-in .45s forwards; }
+  @keyframes fadeIn { to { opacity:1; } }
+
+  .num { font-size:10px; letter-spacing:3px; text-transform:uppercase; font-style:italic; color:var(--muted); }
+  .title { font-size:32px; font-weight:300; font-style:italic; margin:10px 0 0; line-height:1.15; }
+  .rule { width:56px; height:0.6px; background:rgba(30,30,27,.35); margin:16px auto; }
+  .body { font-size:15px; font-style:italic; color:var(--muted); margin:0; max-width:320px; }
+
+  /* editorial page dots */
+  .dots { display:flex; gap:8px; justify-content:center; margin-top:22px; }
+  .dot { width:6px; height:6px; border-radius:99px; background:rgba(30,30,27,.18); transition:all .35s ease-in-out; cursor:pointer; }
+  .dot.on { width:22px; background:rgba(30,30,27,.85); }
+
+  .arrows { display:flex; justify-content:space-between; align-items:center; margin-top:14px; }
+  .arrow { background:none; border:none; color:var(--muted); font-size:22px; cursor:pointer; padding:6px 10px; font-family:inherit; }
+  .arrow:disabled { opacity:.25; cursor:default; }
+
+  .features { display:grid; grid-template-columns:1fr; gap:18px; margin:52px 0; }
   @media (min-width:620px){ .features{ grid-template-columns:1fr 1fr; } }
   .card { background:var(--surface); border:0.5px solid rgba(30,30,27,.08); border-radius:22px; padding:24px; }
   .card h3 { margin:0 0 6px; font-size:18px; font-weight:400; }
@@ -65,57 +92,70 @@
 
   <header class="hero">
     <div class="kicker">A lightweight way to improve your posture</div>
-    <h1>Welcome to Feather</h1>
-    <p class="lead">A quiet companion through your working day — gently keeping you upright, all on your device.</p>
   </header>
 
-  <section class="carousel" aria-label="How Feather works">
-    <div class="track">
-      <article class="slide">
+  <section class="pager" aria-label="How Feather works">
+    <div class="stage" id="stage">
+
+      <article class="slide active">
+        <div class="art"><span class="halo"></span><img src="feather.png" alt=""></div>
         <div class="num">One</div>
-        <h3>Welcome to Feather</h3>
+        <h3 class="title">Welcome to Feather</h3>
         <div class="rule"></div>
-        <p>A lightweight way to improve your posture — and a quiet companion through your working day.</p>
+        <p class="body">A lightweight way to improve your posture — and a quiet companion through your working day.</p>
       </article>
+
       <article class="slide">
+        <div class="art"><span class="halo"></span>
+          <svg class="pulse" viewBox="0 0 24 24" fill="none" stroke="#1e1e1b" stroke-opacity=".85" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 8a5 5 0 0 1 10 0v6"/>
+            <path d="M7 14v-2"/>
+            <rect x="4.5" y="13.5" width="3" height="6" rx="1.5"/>
+            <rect x="16.5" y="13.5" width="3" height="6" rx="1.5"/>
+          </svg>
+        </div>
         <div class="num">Two</div>
-        <h3>Connect your AirPods</h3>
+        <h3 class="title">Connect your AirPods</h3>
         <div class="rule"></div>
-        <p>Feather pairs with AirPods Pro or Max to read the gentle tilt of your neck — no extra hardware, no fuss.</p>
+        <p class="body">Feather pairs with AirPods Pro or Max to read the gentle tilt of your neck — no extra hardware, no fuss.</p>
       </article>
+
       <article class="slide">
+        <div class="art"><span class="halo"></span>
+          <svg class="pulse" viewBox="0 0 24 24" fill="none" stroke="#1e1e1b" stroke-opacity=".85" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="2.2"/>
+            <path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7"/>
+            <path d="M6 6a8.5 8.5 0 0 0 0 12M18 6a8.5 8.5 0 0 1 0 12"/>
+          </svg>
+        </div>
         <div class="num">Three</div>
-        <h3>A quiet, private signal</h3>
+        <h3 class="title">A quiet, private signal</h3>
         <div class="rule"></div>
-        <p>Motion data stays on your device. Feather reads only the angle of your head — nothing more.</p>
+        <p class="body">Motion data stays on your device. Feather reads only the angle of your head — nothing more.</p>
       </article>
+
       <article class="slide">
+        <div class="art"><span class="halo"></span><img src="feather.png" alt=""></div>
         <div class="num">Four</div>
-        <h3>All set</h3>
+        <h3 class="title">All set</h3>
         <div class="rule"></div>
-        <p>Pop in your AirPods, and let Feather take it from here.</p>
+        <p class="body">Pop in your AirPods, and let Feather take it from here.</p>
       </article>
+
     </div>
-    <p class="hint">← swipe through →</p>
+
+    <div class="dots" id="dots"></div>
+    <div class="arrows">
+      <button class="arrow" id="prev" aria-label="Previous">‹</button>
+      <button class="arrow" id="next" aria-label="Next">›</button>
+    </div>
   </section>
 
   <section class="features">
-    <div class="card">
-      <h3>Real-time awareness</h3>
-      <p>Live neck-angle tracking through your AirPods, with a calm dashboard showing your posture right now.</p>
-    </div>
-    <div class="card">
-      <h3>Gentle reminders</h3>
-      <p>A soft alert when you’ve been slouching too long — you set the sensitivity and the timing.</p>
-    </div>
-    <div class="card">
-      <h3>See your progress</h3>
-      <p>Daily posture composition, history, and weekly trends so you can watch yourself improve.</p>
-    </div>
-    <div class="card">
-      <h3>Private by design</h3>
-      <p>No account, no analytics, no tracking. Your data stays in your own private iCloud — we never see it.</p>
-    </div>
+    <div class="card"><h3>Real-time awareness</h3><p>Live neck-angle tracking through your AirPods, with a calm dashboard showing your posture right now.</p></div>
+    <div class="card"><h3>Gentle reminders</h3><p>A soft alert when you’ve been slouching too long — you set the sensitivity and the timing.</p></div>
+    <div class="card"><h3>See your progress</h3><p>Daily posture composition, history, and weekly trends so you can watch yourself improve.</p></div>
+    <div class="card"><h3>Private by design</h3><p>No account, no analytics, no tracking. Your data stays in your own private iCloud — we never see it.</p></div>
   </section>
 
   <div class="price">
@@ -124,10 +164,63 @@
   </div>
 
   <hr>
-
   <footer>
     <p>© 2026 Francesco Bertocci LLC · <a href="support.html">Support</a> · <a href="privacy.html">Privacy Policy</a> · <a href="mailto:fbmore+featherapp@gmail.com">Contact</a></p>
   </footer>
 </div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsWrap = document.getElementById('dots');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  let i = 0;
+
+  slides.forEach((_, n) => {
+    const d = document.createElement('span');
+    d.className = 'dot' + (n === 0 ? ' on' : '');
+    d.addEventListener('click', () => go(n));
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function go(n) {
+    n = (n + slides.length) % slides.length;
+    if (n === i) return;
+    // restart text animations by toggling active off->on
+    slides[i].classList.remove('active');
+    i = n;
+    // force reflow so the keyframes re-run on the newly active slide
+    void slides[i].offsetWidth;
+    slides[i].classList.add('active');
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
+    prev.disabled = false; next.disabled = false;
+  }
+
+  prev.addEventListener('click', () => go(i - 1));
+  next.addEventListener('click', () => go(i + 1));
+
+  // keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') go(i - 1);
+    if (e.key === 'ArrowRight') go(i + 1);
+  });
+
+  // swipe
+  let x0 = null;
+  const stage = document.getElementById('stage');
+  stage.addEventListener('touchstart', e => x0 = e.touches[0].clientX, {passive:true});
+  stage.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, {passive:true});
+
+  // gentle auto-advance, pauses on interaction
+  let timer = setInterval(() => go(i + 1), 5000);
+  ['click','touchstart','keydown'].forEach(ev =>
+    document.addEventListener(ev, () => { clearInterval(timer); timer = setInterval(() => go(i + 1), 9000); }, {passive:true}));
+</script>
 </body>
 </html>
