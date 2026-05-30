@@ -3,71 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feather — Privacy Policy</title>
+<title>Feather — Posture coaching with AirPods</title>
+<meta name="description" content="Feather is a quiet posture coach that uses your AirPods to notice when you slouch and gently nudges you upright. Private by design.">
 <style>
-  :root { --ink:#1e1e1b; --muted:#645d51; --canvas:#f0ece6; --accent:#7b8d78; }
+  :root { --ink:#1e1e1b; --muted:#645d51; --canvas:#f0ece6; --accent:#7b8d78; --surface:#fbfbf6; }
   * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--canvas); color: var(--ink);
-    font-family: ui-serif, Georgia, "Times New Roman", serif;
-    line-height: 1.6; -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
-  .kicker { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); font-style: italic; }
-  h1 { font-size: 40px; font-weight: 300; font-style: italic; margin: 8px 0 4px; }
-  h2 { font-size: 22px; font-weight: 400; margin: 40px 0 8px; }
-  p, li { font-size: 17px; color: #2c2a25; }
-  .muted { color: var(--muted); font-size: 14px; font-style: italic; }
-  a { color: var(--accent); }
-  .lead { font-size: 19px; }
-  hr { border: none; border-top: 1px solid rgba(30,30,27,.1); margin: 40px 0; }
-  .pill { display:inline-block; background: var(--accent); color: var(--canvas); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
-  footer { margin-top: 56px; font-size: 13px; color: var(--muted); }
+  body { margin:0; background:var(--canvas); color:var(--ink);
+    font-family: ui-serif, Georgia, "Times New Roman", serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+  nav { display:flex; justify-content:space-between; align-items:center; font-size:14px; }
+  nav .brand { font-weight:500; letter-spacing:2px; text-transform:uppercase; font-style:italic; color:var(--ink); }
+  nav .links a { margin-left:18px; color:var(--muted); }
+  .hero { text-align:center; padding: 64px 0 40px; }
+  .kicker { font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); font-style:italic; }
+  h1 { font-size:52px; font-weight:300; font-style:italic; margin:10px 0 14px; line-height:1.1; }
+  .lead { font-size:20px; color:#2c2a25; max-width:560px; margin:0 auto; }
+  .features { display:grid; grid-template-columns:1fr; gap:18px; margin:48px 0; }
+  @media (min-width:620px){ .features{ grid-template-columns:1fr 1fr; } }
+  .card { background:var(--surface); border:0.5px solid rgba(30,30,27,.08); border-radius:22px; padding:24px; }
+  .card h3 { margin:0 0 6px; font-size:18px; font-weight:400; }
+  .card p { margin:0; font-size:15px; color:var(--muted); }
+  .price { text-align:center; margin:48px 0; }
+  .price .tag { font-size:15px; color:var(--muted); font-style:italic; }
+  .price .amt { font-size:18px; }
+  hr { border:none; border-top:1px solid rgba(30,30,27,.1); margin:48px 0; }
+  footer { text-align:center; font-size:13px; color:var(--muted); }
+  footer a { color:var(--muted); }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="kicker">Feather</div>
-  <h1>Privacy Policy</h1>
-  <p class="muted">Last updated: 29 May 2026</p>
+  <nav>
+    <span class="brand">Feather</span>
+    <span class="links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+    </span>
+  </nav>
 
-  <p class="lead">Feather is built so your posture data stays yours. The app processes everything on your device and, if you use iCloud, stores it only in your own private iCloud account. We never see it.</p>
+  <header class="hero">
+    <div class="kicker">Posture, gently watched</div>
+    <h1>Sit tall, quietly.</h1>
+    <p class="lead">Feather uses the motion sensors in your AirPods to notice when your neck drifts forward — and gently nudges you back upright. No cameras. No wearables. All on your device.</p>
+  </header>
 
-  <p><span class="pill">In short</span> &nbsp;No accounts. No tracking. No analytics. No advertising. Your posture data never reaches our servers — because we don’t have any.</p>
+  <section class="features">
+    <div class="card">
+      <h3>Real-time awareness</h3>
+      <p>Live neck-angle tracking through your AirPods, with a calm dashboard showing your posture right now.</p>
+    </div>
+    <div class="card">
+      <h3>Gentle reminders</h3>
+      <p>A soft alert when you’ve been slouching too long — you set the sensitivity and the timing.</p>
+    </div>
+    <div class="card">
+      <h3>See your progress</h3>
+      <p>Daily posture composition, history, and weekly trends so you can watch yourself improve.</p>
+    </div>
+    <div class="card">
+      <h3>Private by design</h3>
+      <p>No account, no analytics, no tracking. Your data stays in your own private iCloud — we never see it.</p>
+    </div>
+  </section>
+
+  <div class="price">
+    <p class="tag">Free to start, with a 7-day full-access trial.</p>
+    <p class="amt">Premium — <strong>$4.99</strong>/month or <strong>$9.99</strong>/year</p>
+  </div>
 
   <hr>
 
-  <h2>What Feather works with</h2>
-  <p>Feather monitors your neck posture using motion sensors in compatible AirPods (via Apple’s CoreMotion framework). This motion data is read and analyzed <strong>entirely on your device, in real time</strong>. Raw motion is used to compute a neck angle and a posture state, and is not stored or transmitted in raw form.</p>
-
-  <h2>What is stored</h2>
-  <p>Feather keeps a record of your posture over time so it can show your history and trends. This consists of <strong>daily summary information only</strong> — per-day posture composition (good / marginal / poor / critical), angle averages, and total monitoring time. Real-time, moment-to-moment readings are held only briefly in memory while you’re tracking and are never stored or uploaded.</p>
-  <p>These daily summaries are stored locally on your device. If you’re signed in to iCloud, they are also synced to <strong>your own private iCloud account</strong> (Apple’s CloudKit private database, container <code>iCloud.com.fbmore.Feather2</code>) so your history appears across your devices and is restored if you reinstall the app. This is the same private iCloud that holds your other apps’ data. The developer of Feather has no access to it, and it is never placed in any public or shared database.</p>
-
-  <h2>What we do <em>not</em> collect</h2>
-  <ul>
-    <li>No account, sign-in, name, email, or phone number is required or collected.</li>
-    <li>No analytics, usage tracking, crash reporting, or advertising SDKs of any kind.</li>
-    <li>No location data.</li>
-    <li>No data is sent to the developer or to any third-party server (other than as described below for purchases).</li>
-  </ul>
-
-  <h2>Subscriptions &amp; purchases</h2>
-  <p>Feather offers an optional premium subscription. Purchases are processed by Apple and managed through <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">RevenueCat</a>, which handles subscription status and receipt validation. Feather identifies your subscription using an <strong>anonymous identifier</strong> generated per installation — no personal information (name, email, etc.) is sent. Apple’s standard purchase terms and privacy practices apply to the transaction itself.</p>
-
-  <h2>Notifications</h2>
-  <p>Feather can send you <strong>local notifications</strong> (generated on your device) to remind you when your posture has needed correcting for a while. These are not push notifications and do not involve any server.</p>
-
-  <h2>Children’s privacy</h2>
-  <p>Feather is not directed at children under 13 and does not knowingly collect any personal information from them.</p>
-
-  <h2>Changes to this policy</h2>
-  <p>If this policy changes, the updated version will be posted on this page with a new “last updated” date.</p>
-
-  <h2>Contact</h2>
-  <p>Feather is operated by <strong>Francesco Bertocci LLC</strong>. Questions about privacy or your data? Email <a href="mailto:fbmore+featherapp@gmail.com">fbmore+featherapp@gmail.com</a>.</p>
-
-  <footer>© 2026 Francesco Bertocci LLC. Feather is a product of Francesco Bertocci LLC. This policy describes the Feather iOS app.</footer>
+  <footer>
+    <p>© 2026 Francesco Bertocci LLC · <a href="support.html">Support</a> · <a href="privacy.html">Privacy Policy</a> · <a href="mailto:fbmore+featherapp@gmail.com">Contact</a></p>
+  </footer>
 </div>
 </body>
 </html>
