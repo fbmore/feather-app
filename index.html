@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feather — Posture coaching with AirPods</title>
+<title>Feather — A lightweight way to improve your posture</title>
 <meta name="description" content="Feather is a quiet posture coach that uses your AirPods to notice when you slouch and gently nudges you upright. Private by design.">
 <style>
   :root { --ink:#1e1e1b; --muted:#645d51; --canvas:#f0ece6; --accent:#7b8d78; --surface:#fbfbf6; }
@@ -16,10 +16,30 @@
   nav { display:flex; justify-content:space-between; align-items:center; font-size:14px; }
   nav .brand { font-weight:500; letter-spacing:2px; text-transform:uppercase; font-style:italic; color:var(--ink); }
   nav .links a { margin-left:18px; color:var(--muted); }
-  .hero { text-align:center; padding: 64px 0 40px; }
+  .hero { text-align:center; padding: 56px 0 24px; }
   .kicker { font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); font-style:italic; }
-  h1 { font-size:52px; font-weight:300; font-style:italic; margin:10px 0 14px; line-height:1.1; }
-  .lead { font-size:20px; color:#2c2a25; max-width:560px; margin:0 auto; }
+  h1 { font-size:48px; font-weight:300; font-style:italic; margin:10px 0 14px; line-height:1.1; }
+  .lead { font-size:19px; color:#2c2a25; max-width:540px; margin:0 auto; font-style:italic; }
+
+  /* Onboarding carousel */
+  .carousel { margin: 40px 0 8px; }
+  .track {
+    display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:8px 4px 20px; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  }
+  .track::-webkit-scrollbar { display:none; }
+  .slide {
+    scroll-snap-align:center; flex:0 0 86%; max-width:420px; margin:0 auto;
+    background:var(--surface); border:0.5px solid rgba(30,30,27,.08); border-radius:26px;
+    padding:40px 32px; text-align:center;
+  }
+  @media (min-width:620px){ .slide{ flex-basis:60%; } }
+  .slide .num { font-size:10px; letter-spacing:3px; text-transform:uppercase; font-style:italic; color:var(--muted); }
+  .slide h3 { font-size:30px; font-weight:300; font-style:italic; margin:10px 0 0; line-height:1.15; }
+  .slide .rule { width:56px; height:0.6px; background:rgba(30,30,27,.35); margin:16px auto; }
+  .slide p { font-size:15px; font-style:italic; color:var(--muted); margin:0; }
+  .hint { text-align:center; font-size:12px; color:var(--muted); font-style:italic; margin:4px 0 0; }
+
   .features { display:grid; grid-template-columns:1fr; gap:18px; margin:48px 0; }
   @media (min-width:620px){ .features{ grid-template-columns:1fr 1fr; } }
   .card { background:var(--surface); border:0.5px solid rgba(30,30,27,.08); border-radius:22px; padding:24px; }
@@ -45,9 +65,39 @@
 
   <header class="hero">
     <div class="kicker">A lightweight way to improve your posture</div>
-    <h1>Sit tall, quietly.</h1>
-    <p class="lead">Feather uses the motion sensors in your AirPods to notice when your neck drifts forward — and gently nudges you back upright. No cameras. No wearables. All on your device.</p>
+    <h1>Welcome to Feather</h1>
+    <p class="lead">A quiet companion through your working day — gently keeping you upright, all on your device.</p>
   </header>
+
+  <section class="carousel" aria-label="How Feather works">
+    <div class="track">
+      <article class="slide">
+        <div class="num">One</div>
+        <h3>Welcome to Feather</h3>
+        <div class="rule"></div>
+        <p>A lightweight way to improve your posture — and a quiet companion through your working day.</p>
+      </article>
+      <article class="slide">
+        <div class="num">Two</div>
+        <h3>Connect your AirPods</h3>
+        <div class="rule"></div>
+        <p>Feather pairs with AirPods Pro or Max to read the gentle tilt of your neck — no extra hardware, no fuss.</p>
+      </article>
+      <article class="slide">
+        <div class="num">Three</div>
+        <h3>A quiet, private signal</h3>
+        <div class="rule"></div>
+        <p>Motion data stays on your device. Feather reads only the angle of your head — nothing more.</p>
+      </article>
+      <article class="slide">
+        <div class="num">Four</div>
+        <h3>All set</h3>
+        <div class="rule"></div>
+        <p>Pop in your AirPods, and let Feather take it from here.</p>
+      </article>
+    </div>
+    <p class="hint">← swipe through →</p>
+  </section>
 
   <section class="features">
     <div class="card">
