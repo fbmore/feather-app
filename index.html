@@ -41,6 +41,7 @@
     background:var(--accent); opacity:.18; filter:blur(18px);
   }
   .art img { width:130px; height:130px; object-fit:contain; position:relative; }
+  .art img.airpods { width:150px; height:auto; }
   .art svg { width:92px; height:92px; position:relative; }
   .art .pulse { animation: pulse 2.2s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{ opacity:.85; transform:scale(1);} 50%{ opacity:.55; transform:scale(.94);} }
@@ -106,14 +107,7 @@
       </article>
 
       <article class="slide">
-        <div class="art"><span class="halo"></span>
-          <svg class="pulse" viewBox="0 0 24 24" fill="none" stroke="#1e1e1b" stroke-opacity=".85" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 8a5 5 0 0 1 10 0v6"/>
-            <path d="M7 14v-2"/>
-            <rect x="4.5" y="13.5" width="3" height="6" rx="1.5"/>
-            <rect x="16.5" y="13.5" width="3" height="6" rx="1.5"/>
-          </svg>
-        </div>
+        <div class="art"><span class="halo"></span><img class="airpods" src="airpodspro.png" alt="AirPods Pro"></div>
         <div class="num">Two</div>
         <h3 class="title">Connect your AirPods</h3>
         <div class="rule"></div>
